@@ -917,16 +917,22 @@ p {
   color: var(--white-pure);
 }
 
+.cta__stat-text {
+  display: flex;
+  flex-direction: column;
+}
+
 .cta__stat strong {
-  display: block;
-  font-size: 1.75rem;
+  font-size: 1.125rem;
   color: var(--white-pure);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  line-height: 1.3;
 }
 
 .cta__stat span {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: rgba(255,255,255,0.75);
+  line-height: 1.4;
 }
 
 /* ============================================
