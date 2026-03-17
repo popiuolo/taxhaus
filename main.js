@@ -20,6 +20,31 @@
     }, { passive: true });
   }
 
+  // --- Active section indicator ---
+  var navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+  if (navLinks.length > 0 && 'IntersectionObserver' in window) {
+    var sections = [];
+    navLinks.forEach(function (link) {
+      var id = link.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
+      if (section) sections.push({ el: section, link: link });
+    });
+
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var match = sections.find(function (s) { return s.el === entry.target; });
+        if (match) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (l) { l.classList.remove('active'); });
+            match.link.classList.add('active');
+          }
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-80px 0px -40% 0px' });
+
+    sections.forEach(function (s) { sectionObserver.observe(s.el); });
+  }
+
   // --- Mobile menu toggle ---
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -157,5 +182,44 @@
       }
     });
   });
+
+  // --- Testimonial carousel ---
+  var slides = document.querySelectorAll('.testimonial-card[data-slide]');
+  var dots = document.querySelectorAll('.testimonial-dot');
+  if (slides.length > 0 && dots.length > 0) {
+    var currentSlide = 0;
+    var totalSlides = slides.length;
+    var autoplayInterval = null;
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % totalSlides);
+    }
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goToSlide(parseInt(dot.getAttribute('data-dot'), 10));
+        resetAutoplay();
+      });
+    });
+
+    startAutoplay();
+  }
 
 })();
