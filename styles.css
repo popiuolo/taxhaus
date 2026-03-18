@@ -1465,6 +1465,13 @@ p {
     padding: 8px 0;
   }
 
+  .hero__report-row strong {
+    text-align: right;
+    margin-left: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
   .hero__report-check {
     font-size: 0.6875rem;
     gap: 6px;
@@ -1545,6 +1552,13 @@ p {
   .hero__report-row {
     font-size: 0.6875rem;
     padding: 4px 0;
+  }
+
+  .hero__report-row strong {
+    text-align: right;
+    margin-left: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .hero__report-check {
