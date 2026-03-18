@@ -306,6 +306,30 @@ p {
   gap: 16px;
 }
 
+.nav__phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--green-subtle);
+  color: var(--green);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.nav__phone:hover {
+  transform: scale(1.08);
+  background: var(--green);
+  color: var(--white-pure);
+  box-shadow: var(--shadow-md);
+}
+
+.nav__phone svg {
+  width: 20px;
+  height: 20px;
+}
+
 .nav__whatsapp {
   display: flex;
   align-items: center;
@@ -1170,7 +1194,7 @@ p {
    ============================================ */
 .contact-hero {
   padding-top: calc(var(--nav-height) + 64px);
-  padding-bottom: 96px;
+  padding-bottom: 48px;
 }
 
 .contact-hero__inner {
@@ -1345,7 +1369,11 @@ p {
 /* WhatsApp alternate CTA */
 .contact-whatsapp {
   text-align: center;
-  padding: 48px 0 0;
+  padding: 0;
+}
+
+.contact-whatsapp h2 {
+  margin-bottom: 12px;
 }
 
 .contact-whatsapp p {
@@ -1373,8 +1401,35 @@ p {
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ============================================
-   Floating Chat Button (mobile only)
+   Floating Action Buttons (mobile only)
    ============================================ */
+.fab-phone {
+  display: none;
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white-pure);
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(87, 125, 96, 0.4);
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fab-phone:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(87, 125, 96, 0.5);
+}
+
+.fab-phone svg {
+  width: 24px;
+  height: 24px;
+}
+
 .fab-chat {
   display: none;
   position: fixed;
@@ -1459,7 +1514,15 @@ p {
     display: none;
   }
 
+  .nav__phone {
+    display: none;
+  }
+
   .fab-chat {
+    display: flex;
+  }
+
+  .fab-phone {
     display: flex;
   }
 
