@@ -109,39 +109,48 @@
     });
   }
 
-  // --- Problem / Solution scroll highlight ---
-  var problemCard = document.querySelector('.problem__card--issue');
-  var solutionCard = document.querySelector('.problem__card--solution');
-  var problemArrow = document.querySelector('.problem__arrow');
+  // --- Problem / Solution editorial animation ---
+  var pains = document.querySelectorAll('[data-pain]');
+  var gains = document.querySelectorAll('[data-gain]');
 
-  if (problemCard && solutionCard && problemArrow && 'IntersectionObserver' in window) {
-    var problemHighlighted = false;
+  if (pains.length > 0 && 'IntersectionObserver' in window) {
+    var painTriggered = false;
 
-    var problemObserver = new IntersectionObserver(function (entries) {
+    var painObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && !problemHighlighted) {
-          problemHighlighted = true;
+        if (entry.isIntersecting && !painTriggered) {
+          painTriggered = true;
 
-          // Step 1: Highlight problem card
-          problemCard.classList.add('highlight');
+          // Stagger strikethrough across pain items
+          pains.forEach(function (pain, i) {
+            setTimeout(function () {
+              pain.classList.add('struck');
+            }, i * 700);
+          });
 
-          // Step 2: Highlight arrow after 600ms
-          setTimeout(function () {
-            problemArrow.classList.add('highlight');
-          }, 600);
-
-          // Step 3: Dim problem, highlight solution after 1200ms
-          setTimeout(function () {
-            problemCard.classList.remove('highlight');
-            solutionCard.classList.add('highlight');
-          }, 1200);
-
-          problemObserver.unobserve(entry.target);
+          painObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
 
-    problemObserver.observe(problemCard);
+    painObserver.observe(pains[0]);
+  }
+
+  if (gains.length > 0 && 'IntersectionObserver' in window) {
+    var gainObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var gain = entry.target;
+          var index = Array.prototype.indexOf.call(gains, gain);
+          setTimeout(function () {
+            gain.classList.add('visible');
+          }, index * 200);
+          gainObserver.unobserve(gain);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -20px 0px' });
+
+    gains.forEach(function (g) { gainObserver.observe(g); });
   }
 
   // --- Contact form submission ---
