@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .card {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #577D60 0%, #3E5C45 60%, #2D4832 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle grid pattern */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    /* Glow accent */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(196,163,90,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .left {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: rgba(255,252,247,0.7);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      color: #FFFCF7;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 22px;
+      color: rgba(255,252,247,0.8);
+      line-height: 1.5;
+      max-width: 520px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      padding: 12px 24px;
+      background: rgba(255,252,247,0.12);
+      border: 1px solid rgba(255,252,247,0.2);
+      border-radius: 50px;
+      color: #FFFCF7;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C4A35A;
+    }
+    .right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+    }
+    .stat {
+      text-align: right;
+      padding: 16px 28px;
+      background: rgba(255,252,247,0.08);
+      border: 1px solid rgba(255,252,247,0.12);
+      border-radius: 16px;
+      min-width: 220px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 36px;
+      font-weight: 700;
+      color: #FFFCF7;
+      line-height: 1.2;
+    }
+    .stat span {
+      font-size: 14px;
+      color: rgba(255,252,247,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .url {
+      position: absolute;
+      bottom: 40px;
+      right: 90px;
+      font-size: 16px;
+      color: rgba(255,252,247,0.4);
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <div class="logo-text">TaxHaus</div>
+      <h1>Stop Overpaying in Taxes</h1>
+      <p>CPA-led accounting for Canadian business owners. Tax planning, compliance, and advisory — 100% virtual.</p>
+      <div class="badge">
+        <span class="dot"></span>
+        Free Tax Savings Review
+      </div>
+    </div>
+    <div class="right">
+      <div class="stat">
+        <strong>10+</strong>
+        <span>Years Experience</span>
+      </div>
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Virtual</span>
+      </div>
+      <div class="stat">
+        <strong>CPA</strong>
+        <span>Certified</span>
+      </div>
+    </div>
+    <div class="url">taxhaus.ca</div>
+  </div>
+</body>
+</html>
