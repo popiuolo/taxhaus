@@ -553,6 +553,15 @@ p {
 .problem__card--issue {
   background: #FDF6F0;
   border: 1px solid #EDDED2;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.6s ease;
+  opacity: 0.5;
+}
+
+.problem__card--issue.highlight {
+  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.15), 0 8px 32px rgba(139, 105, 20, 0.1);
+  border-color: #C4A35A;
 }
 
 .problem__card--issue h3 {
@@ -562,6 +571,15 @@ p {
 .problem__card--solution {
   background: var(--green-subtle);
   border: 1px solid #C6DCC9;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.6s ease;
+  opacity: 0.5;
+}
+
+.problem__card--solution.highlight {
+  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(87, 125, 96, 0.15), 0 8px 32px rgba(87, 125, 96, 0.1);
+  border-color: var(--green);
 }
 
 .problem__card--solution h3 {
@@ -570,6 +588,12 @@ p {
 
 .problem__arrow {
   color: var(--gray-dark);
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.problem__arrow.highlight {
+  color: var(--green);
+  transform: translateX(6px);
 }
 
 .problem__arrow svg {
@@ -1326,6 +1350,10 @@ p {
   .problem__arrow {
     transform: rotate(90deg);
     margin: 0 auto;
+  }
+
+  .problem__arrow.highlight {
+    transform: rotate(90deg) translateX(6px);
   }
 
   .cta__inner {

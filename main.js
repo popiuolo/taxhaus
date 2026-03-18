@@ -109,6 +109,41 @@
     });
   }
 
+  // --- Problem / Solution scroll highlight ---
+  var problemCard = document.querySelector('.problem__card--issue');
+  var solutionCard = document.querySelector('.problem__card--solution');
+  var problemArrow = document.querySelector('.problem__arrow');
+
+  if (problemCard && solutionCard && problemArrow && 'IntersectionObserver' in window) {
+    var problemHighlighted = false;
+
+    var problemObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !problemHighlighted) {
+          problemHighlighted = true;
+
+          // Step 1: Highlight problem card
+          problemCard.classList.add('highlight');
+
+          // Step 2: Highlight arrow after 600ms
+          setTimeout(function () {
+            problemArrow.classList.add('highlight');
+          }, 600);
+
+          // Step 3: Dim problem, highlight solution after 1200ms
+          setTimeout(function () {
+            problemCard.classList.remove('highlight');
+            solutionCard.classList.add('highlight');
+          }, 1200);
+
+          problemObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '0px 0px -60px 0px' });
+
+    problemObserver.observe(problemCard);
+  }
+
   // --- Contact form submission ---
   var contactForm = document.getElementById('contactForm');
   var formSuccess = document.getElementById('formSuccess');
